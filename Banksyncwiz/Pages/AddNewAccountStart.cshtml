@@ -1,0 +1,15 @@
+﻿@page
+@model AddNewAccountStartModel
+@{
+    ViewData["Title"] = "Welcome to Add New Accounts";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Add New Accounts</h1>
+    <p>How do you want to add transactions from your bank?</p>
+    <div class="text-left" style="margin:auto; width:26%; min-width:300px;">
+        <label class="makeblock"><a asp-area="" asp-page="/FinancialInstitutionsList">Add Synced Accounts</a></label>
+        <label class="makeblock"><a asp-area="" asp-page="FinancialInstitionsList">Add A Manual (non-synced) Account</a></label>
+    </div>
+</div>
+
