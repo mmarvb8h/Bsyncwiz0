@@ -30,5 +30,63 @@
             </a>
         </div>
     </div>
+
+    <div id="vueAppSection">
+        <!-- Content -->
+        <p>count is: {{count}}</p>
+
+        <div style="margin-bottom:16px;">
+            <input class="form-control" style="display:inline-block;width:40%;max-width:440px; "type="text" placeholder="Search For Financial Institution" aria-label="default input">
+            <button class="btn btn-primary" style="margin-left:6px; margin-top:-4px;" v-on:click="searchBtnClick">Search</button>
+        </div>
+
+        <div class="text-left" style="margin:auto; width:36%; min-width:100px;">
+            <div class="list-group" style="overflow-x:auto;">
+
+                <a v-for="row in institutions_list" href="#" class="list-group-item list-group-item-action" aria-current="true">
+                    <img v-bind:src="row.image" class="card-img-left" style="width:64px;height:64px;" alt="...">
+                    <div class="card-body" style="display:inline;">
+                        <h5 class="card-title" style="display:inline;">{{row.name}}</h5>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </div>
 </div>
 
+@section Scripts
+{
+    <script src="https://unpkg.com/vue@3.0.4"></script>
+
+    <script type="text/javascript">
+        console.log("in script...");
+
+        const MyComponent = {
+            data() {
+                return {
+                    count: @Model.countx,
+                    institutions_list: [
+                        { image: "/favicon.ico", name: "My Bank One" },
+                        { image: "/favicon.ico", name: "My Bank Two" }
+                    ]
+                }
+            },
+            methods: {
+                searchBtnClick() {
+                    console.log("in click...");
+                }
+            }
+        }
+
+        const vueApp = Vue.createApp(MyComponent);
+        @*const vueApp = Vue.createApp({
+            data() {
+                return { count: 4 }
+            }
+        });*@
+        const vm = vueApp.mount("#vueAppSection");
+
+        console.log("out of script...");
+    </script>
+}
