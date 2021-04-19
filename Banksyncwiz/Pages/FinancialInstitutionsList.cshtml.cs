@@ -26,9 +26,35 @@ namespace Banksyncwiz.Pages
             this.countx = 2;
         }
 
-        public void OnGetInstitutions()
+        public record myFi
+        {
+            public string image { get; set; }
+            public string name { get; set; }
+        }
+
+        public JsonResult OnGetInstitutions()
         {
             Console.Out.WriteLine("In OnGetInstitutionList().");
+
+            List<myFi> fiList = new List<myFi>
+            {
+                new myFi
+                {
+                    image = "/favicon.ico",
+                    name = "FI Name One"
+                },
+                new myFi
+                {
+                    image = "/favicon.ico",
+                    name = "FI Name Two"
+                },
+                new myFi
+                {
+                    image = "/favicon.ico",
+                    name = "FI Name Three"
+                },
+            };
+            return new JsonResult(fiList);
         }
 
         public void OnPostInstitutions()

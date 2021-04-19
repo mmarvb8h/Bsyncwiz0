@@ -36,7 +36,7 @@
         <p>count is: {{count}}</p>
 
         <div style="margin-bottom:16px;">
-            <input class="form-control" style="display:inline-block;width:40%;max-width:440px; "type="text" placeholder="Search For Financial Institution" aria-label="default input">
+            <input class="form-control" style="display:inline-block;width:40%;max-width:440px; "type="text" placeholder="Search For Financial Institution" aria-label="Financial Institution Search">
             <button class="btn btn-primary" style="margin-left:6px; margin-top:-4px;" v-on:click="searchBtnClick">Search</button>
         </div>
 
@@ -75,6 +75,20 @@
             methods: {
                 searchBtnClick() {
                     console.log("in click...");
+                    $.ajax({
+                        method: "GET",
+                        url: "@Url.Page("/FinancialInstitutionsList")?handler=Institutions",
+                        contentType: "application/json",
+                        context: this,
+                        // dataType: "json",
+                        success: function (response) {
+                            console.log("i got ur data...");
+                            this.institutions_list = response;
+                        },
+                        failure: function (response) {
+                            alert(response);  //TODO what do i really want to do here?
+                        }
+                    });
                 }
             }
         }
