@@ -74,7 +74,6 @@
             },
             methods: {
                 searchBtnClick() {
-                    console.log("in click...");
                     $.ajax({
                         method: "GET",
                         url: "@Url.Page("/FinancialInstitutionsList")?handler=Institutions",
@@ -94,11 +93,6 @@
         }
 
         const vueApp = Vue.createApp(MyComponent);
-        @*const vueApp = Vue.createApp({
-            data() {
-                return { count: 4 }
-            }
-        });*@
         const vm = vueApp.mount("#vueAppSection");
 
         console.log("out of script...");

@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
+using Banksyncwiz.Services;
+
 namespace Banksyncwiz.Pages
 {
     public class FinancialInstitutionsListModel : PageModel
@@ -28,13 +30,15 @@ namespace Banksyncwiz.Pages
 
         public record myFi
         {
-            public string image { get; set; }
-            public string name { get; set; }
+            public string? image { get; set; }
+            public string? name { get; set; }
         }
 
-        public JsonResult OnGetInstitutions()
+        public async Task<JsonResult> OnGetInstitutions()
         {
             Console.Out.WriteLine("In OnGetInstitutionList().");
+
+            var result = await new GetInstitutionList().Doit("search for it");
 
             List<myFi> fiList = new List<myFi>
             {

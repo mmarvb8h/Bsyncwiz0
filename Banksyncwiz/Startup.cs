@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
+using Banksyncwiz.Config;
+
 namespace Banksyncwiz
 {
     public class Startup
@@ -39,6 +41,9 @@ namespace Banksyncwiz
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            // Configure HttpClient. We use to call 3rd party.
+            SetHttpServicePointMgr.ConfigureIt();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
