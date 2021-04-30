@@ -42,7 +42,7 @@ namespace Banksyncwiz.Pages
         {
             Console.Out.WriteLine("In OnGetInstitutionList().");
 
-            var result = await new GetInstitutionList().Begin("Wells", _httpclient);
+            var result = await new GetInstitutionList().Begin("z123", _httpclient);
 
             List<myFi> fiList = new List<myFi>
             {

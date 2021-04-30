@@ -32,8 +32,8 @@ namespace Banksyncwiz.Services
                 httpResponse.EnsureSuccessStatusCode();
             }
 
+            // Call to get json from response.
             var jsondata = await GetHttpJsonObject.Begin<TValue>(httpResponse);
-
             return new ResponseData<TValue>
             {
                 httpStatus = httpResponse.StatusCode,
