@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Net.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
+using Banksyncwiz.Config;
 using Banksyncwiz.Services;
 
 namespace Banksyncwiz.Pages
@@ -13,10 +15,12 @@ namespace Banksyncwiz.Pages
     public class FinancialInstitutionsListModel : PageModel
     {
         private readonly ILogger<FinancialInstitutionsListModel> _logger;
+        private readonly HttpClient _httpclient;
 
         public FinancialInstitutionsListModel(ILogger<FinancialInstitutionsListModel> logger)
         {
             _logger = logger;
+            _httpclient = GetMyHttp.client;
         }
 
         public int countx { get; set; }
@@ -38,7 +42,7 @@ namespace Banksyncwiz.Pages
         {
             Console.Out.WriteLine("In OnGetInstitutionList().");
 
-            var result = await new GetInstitutionList().Doit("search for it");
+            var result = await new GetInstitutionList().Begin("Wells", _httpclient);
 
             List<myFi> fiList = new List<myFi>
             {
